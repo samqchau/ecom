@@ -4,19 +4,21 @@ import dotenv from 'dotenv';
 import connectDB from './config/db.js';
 import colors from 'colors';
 import productRouter from './routes/productRoutes.js';
+import userRouter from './routes/userRoutes.js';
 import { errorHandler, notFound } from './middleware/errorMiddleware.js';
 
 dotenv.config();
-
 connectDB();
 
 const app = express();
-app.get('/', (req, res) => {
-  res.send('api is running');
-});
+//Middleware
+app.use(express.json());
 
+//Routers
 app.use('/api/products', productRouter);
+app.use('/api/users', userRouter);
 
+//Error handling middleware
 app.use(notFound);
 app.use(errorHandler);
 
