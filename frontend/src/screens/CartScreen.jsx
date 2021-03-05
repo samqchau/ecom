@@ -20,13 +20,13 @@ const CartScreen = ({ match, location, history }) => {
   const { cartItems } = cart;
 
   const productId = match.params.id;
-  const qty = location.search ? Number(location.search.split('=')[1]) : 1;
+  const quantity = location.search ? Number(location.search.split('=')[1]) : 1;
 
   useEffect(() => {
     if (productId) {
-      dispatch(addToCart(productId, qty));
+      dispatch(addToCart(productId, quantity));
     }
-  }, [dispatch, qty, productId]);
+  }, [dispatch, quantity, productId]);
 
   const removeFromCartHandler = (id) => {
     dispatch(removeFromCart(id));
